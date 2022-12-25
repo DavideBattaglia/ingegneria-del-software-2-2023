@@ -85,21 +85,24 @@ router.post('/login', function (req, res, next) {
 
 ///-----------ZUGRI-----------------------------------------------------------------------------------------------------
 
-router.get('/inserisci', function (req, res, next) {
-	return res.render('inserisci.ejs');
-});
+
 
 router.post('/inserisci', function (req, res, next) {
 	console.log("INSERISCI");
-	let newprova = new bike({
-        Modello: req.body.Modello,
-        Marca: req.body.Marca,
-        Prezzo: req.body.Prezzo,
-        Descrizione: req.body.Descrizione
+	let newprova = new Bike({
+		id: req.body.id,
+        Modello: req.body.modello,
+        Marca: req.body.marca,
+        Prezzo: req.body.prezzo,
+        Descrizione: req.body.descrizione
     });
     newprova.save();
 	console.log(req.newprova);
-    res.redirect('/inserisci');	
+    res.redirect('/catalogo');	
+});
+
+router.get('/inserisci', function (req, res, next) {
+	return res.render('inserisci.ejs');
 });
 
 
